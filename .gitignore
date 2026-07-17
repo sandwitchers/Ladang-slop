@@ -1,0 +1,31 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# Dependencies
+node_modules/
+
+# TypeScript build cache
+*.tsbuildinfo
+
+# vue-tsc composite project emits stray declaration files for vite.config.ts
+vite.config.d.ts
+vite.config.js
+vite.config.{ts}.map
+
+# Editor directories
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# NOTE: dist/ IS committed so users can clone-and-run without building.
+# Rebuild with `npm install && npm run build` after editing source.

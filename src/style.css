@@ -1,0 +1,489 @@
+/* Summaryception — TauriTavern port styles.
+ *
+ * Ported from the original Extension-Summaryception style.css with minimal
+ * changes: the .inline-drawer / .menu_button / .text_pole / .checkbox_label
+ * classes are provided by SillyTavern's CSS (which TauriTavern inherits), so
+ * we only need Summaryception-specific styles here.
+ */
+
+.sc-settings {
+    width: 100%;
+}
+
+.sc-settings .inline-drawer-content {
+    padding: 10px;
+}
+
+.sc-section-title {
+    margin: 8px 0 6px 0;
+    font-size: 1.05em;
+    color: var(--SmartThemeQuoteColor, #ccc);
+}
+
+.sc-divider {
+    margin: 10px 0;
+    border: 0;
+    border-top: 1px solid var(--SmartThemeBorderColor, #444);
+}
+
+.sc-row {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+    gap: 4px;
+}
+
+.sc-row label {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.sc-row label > span {
+    font-weight: 600;
+}
+
+.sc-hint {
+    color: var(--SmartThemeBodyColor, #999);
+    font-size: 0.85em;
+    margin-top: 2px;
+    opacity: 0.8;
+}
+
+.sc-slider-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.sc-slider-row input[type='range'] {
+    flex: 1;
+}
+
+.sc-val {
+    min-width: 30px;
+    text-align: right;
+    font-weight: bold;
+    color: var(--SmartThemeQuoteColor, #ccc);
+}
+
+.sc-textarea {
+    width: 100%;
+    resize: vertical;
+    min-height: 60px;
+    font-family: var(--monoFont, monospace);
+    font-size: 0.9em;
+}
+
+.sc-textarea-tall {
+    min-height: 140px;
+}
+
+.sc-preview {
+    font-family: var(--monoFont, monospace);
+    font-size: 0.85em;
+    color: var(--SmartThemeBodyColor, #ccc);
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+.sc-button-row {
+    display: flex;
+    gap: 6px;
+    margin: 8px 0;
+    flex-wrap: wrap;
+}
+
+.sc-button-row .menu_button {
+    flex: 0 1 auto;
+}
+
+/* ─── Snippet Browser ─── */
+
+.sc-snippet-browser {
+    max-height: 400px;
+    overflow-y: auto;
+    border: 1px solid var(--SmartThemeBorderColor, #444);
+    border-radius: 6px;
+    padding: 8px;
+    background: var(--black30a, rgba(0, 0, 0, 0.3));
+}
+
+.sc-browser-layer {
+    margin-bottom: 12px;
+}
+
+.sc-browser-layer-title {
+    font-weight: bold;
+    color: var(--SmartThemeQuoteColor, #ccc);
+    margin-bottom: 6px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid var(--SmartThemeBorderColor, #444);
+    font-size: 0.9em;
+}
+
+.sc-snippet {
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+    margin-bottom: 6px;
+    padding: 6px 8px;
+    background: var(--black50a, rgba(0, 0, 0, 0.5));
+    border-radius: 4px;
+    border: 1px solid var(--SmartThemeBorderColor, #333);
+    transition: border-color 0.15s;
+}
+
+.sc-snippet:hover {
+    border-color: var(--SmartThemeQuoteColor, #888);
+}
+
+.sc-snippet-text {
+    flex: 1;
+    cursor: pointer;
+    color: var(--SmartThemeBodyColor, #ddd);
+    font-size: 0.9em;
+    line-height: 1.4;
+    white-space: pre-wrap;
+    word-break: break-word;
+    min-width: 0;
+}
+
+.sc-snippet-edit {
+    flex: 1;
+    min-width: 0;
+    font-size: 0.9em;
+    line-height: 1.4;
+    resize: vertical;
+    min-height: 40px;
+}
+
+.sc-snippet-meta {
+    font-size: 0.75em;
+    color: var(--SmartThemeBodyColor, #999);
+    opacity: 0.7;
+    white-space: nowrap;
+    flex-shrink: 0;
+    align-self: center;
+}
+
+.sc-snippet-redo,
+.sc-snippet-delete {
+    padding: 4px 8px;
+    font-size: 0.85em;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.sc-snippet-redo:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.sc-muted {
+    color: var(--SmartThemeBodyColor, #999);
+    opacity: 0.6;
+    font-size: 0.9em;
+    font-style: italic;
+}
+
+/* ─── Layer Stats ─── */
+
+.sc-stats-box {
+    padding: 8px;
+    border: 1px solid var(--SmartThemeBorderColor, #444);
+    border-radius: 6px;
+    background: var(--black30a, rgba(0, 0, 0, 0.3));
+}
+
+.sc-layer-stat {
+    padding: 4px 0;
+    font-size: 0.9em;
+    color: var(--SmartThemeBodyColor, #ddd);
+}
+
+.sc-layer-stat strong {
+    color: var(--SmartThemeQuoteColor, #ff9);
+}
+
+.sc-layer-label {
+    color: var(--SmartThemeBodyColor, #ccc);
+    margin-right: 6px;
+}
+
+/* ─── Inline drawer rotation ─── */
+
+.inline-drawer-icon {
+    transition: transform 0.2s ease;
+}
+
+.inline-drawer-icon.rotated {
+    transform: rotate(180deg);
+}
+
+.inline-drawer-toggle {
+    cursor: pointer;
+    user-select: none;
+}
+
+/* ─── Connection settings ─── */
+
+.summaryception-connection-section {
+    margin-top: 8px;
+}
+
+.summaryception-section-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: bold;
+    font-size: 1.05em;
+    margin-bottom: 4px;
+    color: var(--SmartThemeQuoteColor, #ccc);
+}
+
+.summaryception-help-text {
+    display: block;
+    color: var(--SmartThemeBodyColor, #999);
+    font-size: 0.85em;
+    margin-bottom: 10px;
+    opacity: 0.8;
+}
+
+.summaryception-setting-row {
+    margin-bottom: 10px;
+}
+
+.summaryception-setting-row label {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 4px;
+}
+
+.summaryception-setting-row label > span {
+    font-weight: 600;
+}
+
+.summaryception-setting-row label > small {
+    color: var(--SmartThemeBodyColor, #999);
+    font-size: 0.8em;
+    margin-top: 2px;
+    opacity: 0.8;
+}
+
+.summaryception-sub-panel {
+    margin-top: 10px;
+    padding: 10px;
+    border: 1px solid var(--SmartThemeBorderColor, #444);
+    border-radius: 6px;
+    background: var(--black30a, rgba(0, 0, 0, 0.3));
+}
+
+.summaryception-input-group {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+}
+
+.summaryception-input-group select {
+    flex: 1;
+}
+
+.summaryception-note {
+    display: flex;
+    gap: 6px;
+    align-items: flex-start;
+    margin-top: 8px;
+    color: var(--SmartThemeBodyColor, #999);
+    font-size: 0.85em;
+}
+
+.summaryception-note .fa-solid {
+    margin-top: 2px;
+    flex-shrink: 0;
+}
+
+.summaryception-connection-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 10px;
+    padding: 8px 10px;
+    border-radius: 4px;
+    font-size: 0.9em;
+}
+
+.summaryception-connection-status.success {
+    background: rgba(76, 175, 80, 0.15);
+    border: 1px solid rgba(76, 175, 80, 0.4);
+    color: #4caf50;
+}
+
+.summaryception-connection-status.error {
+    background: rgba(244, 67, 54, 0.15);
+    border: 1px solid rgba(244, 67, 54, 0.4);
+    color: #f44336;
+}
+
+.summaryception-connection-status.loading {
+    background: rgba(33, 150, 243, 0.15);
+    border: 1px solid rgba(33, 150, 243, 0.4);
+    color: #2196f3;
+}
+
+/* ─── Custom prompt manager ─── */
+
+.sc-custom-prompt-manager {
+    margin: 8px 0;
+    padding: 10px;
+    border: 1px solid var(--SmartThemeBorderColor, #444);
+    border-radius: 6px;
+    background: var(--black30a, rgba(0, 0, 0, 0.3));
+}
+
+.sc-custom-prompt-row {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.sc-custom-prompt-slots {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.sc-custom-prompt-slot-row {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+}
+
+.sc-custom-prompt-slot-row select {
+    flex: 1;
+}
+
+.sc-custom-prompt-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.sc-custom-prompt-save-row,
+.sc-custom-prompt-io-row {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+}
+
+.sc-custom-prompt-save-row input {
+    flex: 1;
+}
+
+/* ─── Catchup dialog (rendered outside Vue, in body) ─── */
+
+.sc-catchup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 99999;
+}
+
+.sc-catchup-modal {
+    background: var(--SmartThemeBlurTintColor, #1a1a2e);
+    border: 1px solid var(--SmartThemeBorderColor, #444);
+    border-radius: 10px;
+    padding: 24px;
+    max-width: 500px;
+    width: 90%;
+    color: var(--SmartThemeBodyColor, #ddd);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+}
+
+.sc-catchup-modal h3 {
+    margin: 0 0 16px 0;
+    color: var(--SmartThemeQuoteColor, #ccc);
+}
+
+.sc-catchup-dialog p {
+    margin: 8px 0;
+    line-height: 1.5;
+}
+
+.sc-catchup-dialog hr {
+    margin: 16px 0;
+    border: 0;
+    border-top: 1px solid var(--SmartThemeBorderColor, #444);
+}
+
+.sc-catchup-options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.sc-catchup-options .menu_button {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-align: left;
+    padding: 12px;
+    cursor: pointer;
+}
+
+.sc-catchup-options .menu_button .fa-solid {
+    font-size: 1.5em;
+    color: var(--SmartThemeQuoteColor, #ccc);
+}
+
+.sc-btn-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.sc-btn-label {
+    font-weight: bold;
+    font-size: 1em;
+}
+
+.sc-btn-desc {
+    font-size: 0.85em;
+    color: var(--SmartThemeBodyColor, #999);
+    opacity: 0.8;
+}
+
+/* ─── Misc ─── */
+
+.sc-settings code {
+    background: var(--black50a, rgba(0, 0, 0, 0.5));
+    padding: 1px 4px;
+    border-radius: 3px;
+    font-size: 0.85em;
+}
+
+.sc-settings .text_pole {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.sc-settings .checkbox_label {
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+    cursor: pointer;
+    padding: 4px 0;
+}
+
+.sc-settings .checkbox_label small {
+    display: block;
+    margin-top: 2px;
+    opacity: 0.7;
+    font-size: 0.85em;
+}
