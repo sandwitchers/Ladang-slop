@@ -4,6 +4,11 @@
  * Ported directly from the original Summaryception v5.5.3. Every field is
  * kept identical so that users migrating from the ST version to the
  * TauriTavern port see the same defaults.
+ *
+ * NOTE: PROMPT_PRESETS is declared BEFORE DEFAULT_SETTINGS so that the
+ * narrative preset can be referenced inline in the DEFAULT_SETTINGS literal.
+ * DEFAULT_SETTINGS is Object.freeze()'d for immutability — assigning to it
+ * after freeze throws TypeError at module load time.
  */
 
 export type PromptPreset = 'narrative' | 'gamestate' | 'custom';
@@ -45,52 +50,7 @@ export interface SummaryceptionSettings {
     openaiMaxTokens: number;
 }
 
-export const DEFAULT_SETTINGS: Readonly<SummaryceptionSettings> = Object.freeze({
-    enabled: true,
-    verbatimTurns: 10,
-    turnsPerSummary: 3,
-    snippetsPerLayer: 30,
-    snippetsPerPromotion: 3,
-    maxLayers: 5,
-    injectionTemplate: '\n\n<summary>\n{{summary}}\n</summary>\n\n',
-
-    summarizerSystemPrompt:
-        'Role: precise narrative-state tracker. Output only the summary line — no preamble, no commentary, no markdown.',
-
-    summarizerUserPrompt: '', // Filled below from PROMPT_PRESETS.narrative at init.
-
-    promptPreset: 'narrative',
-    savedCustomPrompts: {},
-    lastCustomPrompt: '',
-
-    pauseSummarization: false,
-    disableGhosting: false,
-
-    stripPatterns: [
-        '<|channel>thought',
-        '<channel|>',
-        '<output>',
-        '</output>',
-        '<thinking>',
-        '</thinking>',
-    ],
-
-    debugMode: false,
-    traceMode: false,
-
-    connectionSource: 'default',
-    summarizerResponseLength: 0,
-    connectionProfileId: '',
-    ollamaUrl: 'http://localhost:11434',
-    ollamaModel: '',
-    ollamaModelsCache: [],
-    openaiUrl: '',
-    openaiKey: '',
-    openaiModel: '',
-    openaiMaxTokens: 0,
-});
-
-// ─── Prompt presets ───────────────────────────────────────────────────
+// ─── Prompt presets (declared first so DEFAULT_SETTINGS can reference it) ──
 
 export const PROMPT_PRESETS: Record<Exclude<PromptPreset, 'custom'>, string> = {
     narrative: `<player_name>
@@ -136,6 +96,53 @@ Write in short phrases, no more than 20; output must be a single line:`,
 
 export const DEFAULT_PROMPT_PRESET = 'narrative';
 
+// ─── Default settings (frozen — never assign to this after declaration) ──
+
+export const DEFAULT_SETTINGS: Readonly<SummaryceptionSettings> = Object.freeze({
+    enabled: true,
+    verbatimTurns: 10,
+    turnsPerSummary: 3,
+    snippetsPerLayer: 30,
+    snippetsPerPromotion: 3,
+    maxLayers: 5,
+    injectionTemplate: '\n\n<summary>\n{{summary}}\n</summary>\n\n',
+
+    summarizerSystemPrompt:
+        'Role: precise narrative-state tracker. Output only the summary line — no preamble, no commentary, no markdown.',
+
+    summarizerUserPrompt: PROMPT_PRESETS.narrative,
+
+    promptPreset: 'narrative',
+    savedCustomPrompts: {},
+    lastCustomPrompt: '',
+
+    pauseSummarization: false,
+    disableGhosting: false,
+
+    stripPatterns: [
+        '<|channel>thought',
+        '<channel|>',
+        '<output>',
+        '</output>',
+        '<thinking>',
+        '</thinking>',
+    ],
+
+    debugMode: false,
+    traceMode: false,
+
+    connectionSource: 'default',
+    summarizerResponseLength: 0,
+    connectionProfileId: '',
+    ollamaUrl: 'http://localhost:11434',
+    ollamaModel: '',
+    ollamaModelsCache: [],
+    openaiUrl: '',
+    openaiKey: '',
+    openaiModel: '',
+    openaiMaxTokens: 0,
+});
+
 // ─── Retry config ─────────────────────────────────────────────────────
 
 export const RETRY_CONFIG = {
@@ -145,6 +152,3 @@ export const RETRY_CONFIG = {
     backoffMultiplier: 2,
     retryableStatuses: [429, 500, 502, 503, 504],
 } as const;
-
-// Fill the default user prompt from the narrative preset.
-(DEFAULT_SETTINGS as SummaryceptionSettings).summarizerUserPrompt = PROMPT_PRESETS.narrative;

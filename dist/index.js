@@ -2829,7 +2829,10 @@ function yo(e) {
 }
 //#endregion
 //#region src/settings/defaults.ts
-var J = Object.freeze({
+var bo = {
+	narrative: "<player_name>\n{{player_name}}\n</player_name>\n\n<prior_context>\n{{context_str}}\n</prior_context>\n\n<passage_in_question>\n{{story_txt}}\n</passage_in_question>\n\nSummarize only the necessary elements from the passage_in_question to coherently continue the prior_context. If the passage_in_question has 2nd person point of view, 'you' pronoun in prose refers to the player. Use the player name in the summary output instead of 'you'.\n\nFocus on: character interactions, dialogue tone, and relationship dynamics; emotional beats and character motivations; atmosphere, mood, and sensory details that establish tone; narrative themes and subtext; names, location changes, and time; plot developments and unresolved tensions.\n\nExclude anything insubstantial, fluff, atmospheric details, or events already covered in Prior Context.\n\nWrite in short phrases, no more than 20; output must be a single line:",
+	gamestate: "<player_name>\n{{player_name}}\n</player_name>\n\n<prior_context>\n{{context_str}}\n</prior_context>\n\n<passage_in_question>\n{{story_txt}}\n</passage_in_question>\n\nSummarize only the necessary elements from the passage_in_question to coherently continue the prior_context.\n\nFocus on: story progression, plot points, plans, tasks, quests; location changes and current location (reference by name); location interactables encountered, used, or discovered; significant changes to player, NPCs, locations, world, or setting.\n\nExclude anything insubstantial, fluff, atmospheric details, or events already covered in Prior Context.\nSkip any passages that are empty, unclear, or lack significant content.\nWrite in short phrases, no more than 20; output must be a single line:"
+}, J = Object.freeze({
 	enabled: !0,
 	verbatimTurns: 10,
 	turnsPerSummary: 3,
@@ -2838,7 +2841,7 @@ var J = Object.freeze({
 	maxLayers: 5,
 	injectionTemplate: "\n\n<summary>\n{{summary}}\n</summary>\n\n",
 	summarizerSystemPrompt: "Role: precise narrative-state tracker. Output only the summary line — no preamble, no commentary, no markdown.",
-	summarizerUserPrompt: "",
+	summarizerUserPrompt: bo.narrative,
 	promptPreset: "narrative",
 	savedCustomPrompts: {},
 	lastCustomPrompt: "",
@@ -2864,10 +2867,7 @@ var J = Object.freeze({
 	openaiKey: "",
 	openaiModel: "",
 	openaiMaxTokens: 0
-}), bo = {
-	narrative: "<player_name>\n{{player_name}}\n</player_name>\n\n<prior_context>\n{{context_str}}\n</prior_context>\n\n<passage_in_question>\n{{story_txt}}\n</passage_in_question>\n\nSummarize only the necessary elements from the passage_in_question to coherently continue the prior_context. If the passage_in_question has 2nd person point of view, 'you' pronoun in prose refers to the player. Use the player name in the summary output instead of 'you'.\n\nFocus on: character interactions, dialogue tone, and relationship dynamics; emotional beats and character motivations; atmosphere, mood, and sensory details that establish tone; narrative themes and subtext; names, location changes, and time; plot developments and unresolved tensions.\n\nExclude anything insubstantial, fluff, atmospheric details, or events already covered in Prior Context.\n\nWrite in short phrases, no more than 20; output must be a single line:",
-	gamestate: "<player_name>\n{{player_name}}\n</player_name>\n\n<prior_context>\n{{context_str}}\n</prior_context>\n\n<passage_in_question>\n{{story_txt}}\n</passage_in_question>\n\nSummarize only the necessary elements from the passage_in_question to coherently continue the prior_context.\n\nFocus on: story progression, plot points, plans, tasks, quests; location changes and current location (reference by name); location interactables encountered, used, or discovered; significant changes to player, NPCs, locations, world, or setting.\n\nExclude anything insubstantial, fluff, atmospheric details, or events already covered in Prior Context.\nSkip any passages that are empty, unclear, or lack significant content.\nWrite in short phrases, no more than 20; output must be a single line:"
-}, xo = {
+}), xo = {
 	maxRetries: 5,
 	baseDelay: 2e3,
 	maxDelay: 6e4,
@@ -2879,11 +2879,7 @@ var J = Object.freeze({
 		503,
 		504
 	]
-};
-J.summarizerUserPrompt = bo.narrative;
-//#endregion
-//#region src/settings/store.ts
-var So = "tauritavern-summaryception-settings", Co = "summaryception";
+}, So = "tauritavern-summaryception-settings", Co = "summaryception";
 function wo(e) {
 	if (typeof structuredClone == "function") try {
 		return structuredClone(e);
