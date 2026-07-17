@@ -152,5 +152,5 @@ AGPL-3.0 (inherited from the original Summaryception)
 
 ## Credits
 
-- Original Summaryception by [Lodactio](https://github.com/Lodactio/Extension-Summaryception)
+- Original Summaryception by [Lodactio](https://github.com/Lodactio/Extension-Summaryception) — this is a TauriTavern-native port of their AGPL-3.0 work
 - TauriTavern by [Darkatse](https://github.com/Darkatse/TauriTavern)

@@ -4,7 +4,7 @@
     "version": "5.5.3-tt.1",
     "js": "dist/index.js",
     "css": "dist/style.css",
-    "homePage": "https://github.com/Lodactio/Extension-Summaryception",
+    "homePage": "https://github.com/bejircoeg0-dev/Ladang-slop",
     "auto_update": false,
     "minimum_client_version": "1.16.0",
     "dependencies": []
