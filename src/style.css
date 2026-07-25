@@ -98,6 +98,32 @@
     flex: 0 1 auto;
 }
 
+/* Explicit gap between icon and label. The Vue-compiled output already
+   includes a leading space in the text node either way, but this makes
+   the spacing independent of that and of whatever .menu_button rules the
+   host happens to provide, rather than relying on an implicit space
+   character rendering correctly in every host CSS context. */
+.sc-button-row .menu_button i,
+.sc-button-row .menu_button .fa-solid {
+    margin-right: 6px;
+}
+
+/* Ported from the original extension's own style.css (Lodactio/Extension-
+   Summaryception), which defines this itself rather than relying on the
+   host to provide it — .menu_button_danger is not a base SillyTavern
+   class, unlike plain .menu_button. The TauriTavern port's comment at the
+   top of this file assumed it was host-provided and never carried this
+   rule over, which is why the Stop button rendered with no red styling
+   at all instead of just falling back to a default look. */
+.sc-settings .menu_button_danger {
+    color: #ff6b6b;
+    border-color: #ff6b6b;
+}
+
+.sc-settings .menu_button_danger:hover {
+    background: rgba(255, 107, 107, 0.15);
+}
+
 /* ─── Snippet Browser ─── */
 
 .sc-snippet-browser {
@@ -240,6 +266,11 @@
     font-size: 1.05em;
     margin-bottom: 4px;
     color: var(--SmartThemeQuoteColor, #ccc);
+}
+
+/* Also ported from the original, also missing in the port before this fix. */
+.summaryception-section-header .fa-bolt {
+    color: #f0c040;
 }
 
 .summaryception-help-text {
